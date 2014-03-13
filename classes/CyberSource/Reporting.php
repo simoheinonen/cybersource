@@ -124,7 +124,14 @@
 				$this->merchant_id . '/' .
 				$report_name . '.csv';
 
-			$result = @file_get_contents( $url );
+			$context = stream_context_create( array(
+				'ssl' => array(
+					'allow_self_signed' => false,
+					'verify_peer' => true,
+				),
+			) );
+
+			$result = @file_get_contents( $url, false, $context );
 
 			if ( $result === false ) {
 

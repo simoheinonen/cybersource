@@ -667,6 +667,10 @@
 				'http' => array(
 					'timeout' => $this->timeout,
 				),
+				'ssl' => array(
+					'allow_self_signed' => false,
+					'verify_peer' => true,
+				),
 			);
 
 			$context = stream_context_create( $context_options );
